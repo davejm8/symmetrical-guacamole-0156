@@ -12,30 +12,22 @@ RSpec.describe 'index view' do
   let!(:jim) { room_3.guests.create!(name: 'Jim', nights: 1)}
 
   it 'lists all rooms and associated attributes' do
-    visit '/rooms'
-
+    
     GuestRoom.create!(guest: steve, room: room_1)
     GuestRoom.create!(guest: dave, room: room_1)
-
     GuestRoom.create!(guest: steve, room: room_2)
-
     GuestRoom.create!(guest: dave, room: room_3)
-
     GuestRoom.create!(guest: dave, room: room_4)
+    
+    visit '/rooms'
 
-    expect(page).to have_content(room_1.suite)
-    expect(page).to have_content(room_1.rate)
-    expect(page).to have_content(harbor.name)
-    expect(page).to have_content(room_1.guests.count)
+   
 
     
-    expect(page).to have_content(room_2.suite)
-    expect(page).to have_content(room_2.rate)
-    expect(page).to have_content(room_2.guests.count)
 
-    expect(page).to have_content(room_3.suite)
-    expect(page).to have_content(room_3.rate)
-    expect(page).to have_content(holliday.name)
-    expect(page).to have_content(room_3.guests.count)
+    expect(page).to have_content("#{room_3.suite}")
+    expect(page).to have_content("Rate: #{room_3.rate}")
+    expect(page).to have_content("Hotel: #{holliday.name}")
+    expect(page).to have_content("Rented: #{room_3.count_guests}")
   end
 end

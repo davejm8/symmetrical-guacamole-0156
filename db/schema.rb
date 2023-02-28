@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 2023_02_21_161418) do
   create_table "rooms", force: :cascade do |t|
     t.integer "rate"
     t.string "suite"
-    t.integer "reservations"
     t.bigint "hotel_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
